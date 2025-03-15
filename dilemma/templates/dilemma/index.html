@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Kristi&family=Zeyada&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'dilemma/new_style.css' %}" rel="stylesheet" type="text/css">
+    <style>
+        /* Set the background image for the body */
+        body {
+            background-image: url("{% static 'dilemma/background.png' %}");
+        }
+    </style>
+</head>
+<body class="container">
+    <h1  class="row">Sink or Stay</h1>
+    <div id="image_box">
+        <img class="person" src="{% static 'dilemma/'|add:current_options.2|add:'.png' %}" 
+        alt="Image"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="{{ current_options.0 }}"
+        onclick="hideImage(this)">
+    
+        <!-- Second person image -->
+        <img class="other_person" src="{% static 'dilemma/'|add:current_options.3|add:'.png' %}" 
+            alt="Image"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="{{ current_options.1 }}"
+            onclick="hideImage(this)">
+
+        <img id="boat" src="{% static 'dilemma/boat.png' %}"></img>
+    </div>
+    <div class="description">
+        <p id="message"></p> 
+        <p mb-0 id="context">Oh no: the boat is sinking!</p><p> The cargo must be too heavy. </p>
+        <span>Who do you throw offboard? Hover your mouse above a person to learn more about them, and click a person to sacrifice them for the greater good.</span>
+    </div>
+
+
+
+
+    <div class="navbar row">
+        <div class="page-nav-buttons">
+            {% if pk > 1 %}
+                <!-- First and Previous buttons -->
+                <a class="btn btn-primary mb-4" href="{% url 'questions' pk=pk|add:'-1' %}">Previous</a>
+            {% endif %}
+    
+            <!-- Page Number Links -->
+            {% for num in page_range %}
+                {% if pk == num %}
+                    <a class="btn btn-success mb-4" href="{% url 'questions' pk=num %}">{{ num }}</a>
+                {% else %}
+                    <a class="btn btn-primary mb-4" href="{% url 'questions' pk=num %}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+    
+            {% if pk < 5 %}
+                <!-- Next and Last buttons for all except the last page -->
+                <a class="btn btn-primary mb-4" href="{% url 'questions' pk=pk|add:'1' %}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+       
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- <script>
+        // Initialize tooltips
+        var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        function hideImage(clickedImage) {
+            // Hide the clicked image
+            clickedImage.style.display = 'none';
+
+            // Disable other image click
+            let allImages = document.querySelectorAll('img');
+            allImages.forEach(function(image) {
+                if (image !== clickedImage) {
+                    image.onclick = null;  // Remove the click event from the other image
+                    image.style.pointerEvents = 'none';  // Disable clicking
+                }
+            });
+        }
+</script> -->
+    <!-- <script>
+        // Initialize tooltips
+        var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+        function hideImage(clickedImage) {
+            // Hide the clicked image
+            clickedImage.style.display = 'none';
+
+            // Disable other image click
+            let allImages = document.querySelectorAll('img');
+            allImages.forEach(function(image) {
+                if (image !== clickedImage) {
+                    // Change the src of the clicked image to 'splash.png'
+                    clickedImage.src = "{% static 'dilemma/splash.png' %}";
+
+                    // Disable clicking on the remaining image
+                    image.onclick = null;  // Remove the click event
+                    image.style.pointerEvents = 'none';  // Disable clicking on the other image
+                }
+            });
+
+            var messages = ["Yes, that was the right call", "You are such a bad person"];
+            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+            // Get the message paragraph by its ID and update its text
+            var messageParagraph = document.getElementById('message');
+            messageParagraph.textContent = randomMessage;
+
+            // Make the message visible
+            messageParagraph.style.display = 'block';  // Show the message
+        }
+    </script> -->
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    
+        function hideImage(clickedImage) {
+            // Change the src of the clicked image to 'splash.png'
+            clickedImage.src = "{% static 'dilemma/splash.png' %}";
+    
+            // Disable clicking on the clicked image as well
+            clickedImage.onclick = null;  // Remove the click event
+            clickedImage.style.pointerEvents = 'none';  // Disable clicking on the clicked image
+    
+            // Disable clicking on the remaining images
+            let allImages = document.querySelectorAll('img');
+            allImages.forEach(function(image) {
+                if (image !== clickedImage) {
+                    image.onclick = null;  // Remove the click event from other images
+                    image.style.pointerEvents = 'none';  // Disable clicking on the other images
+                }
+            });
+    
+            var messages = ["Yes, that was the right call", "You are such a bad person"];
+            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    
+            // Get the message paragraph by its ID and update its text
+            var messageParagraph = document.getElementById('message');
+            messageParagraph.textContent = randomMessage;
+    
+            // Make the message visible
+            messageParagraph.style.display = 'block';  // Show the message
+        }
+    </script>
+        
+</body>
+</html>
