@@ -66,8 +66,10 @@ div {
     grid-column: 1 / 2;
     width: 5rem;
     align-self: end; 
-    justify-self: center;
+    justify-self: end;
     position: relative;
+    margin-right: 1rem;
+
     top: 1rem;
 
 }
@@ -79,7 +81,7 @@ div {
     align-self: end; 
     justify-self: start;
     position: relative;
-    
+    margin-left: 1rem;
     top: 1rem;
 
  
@@ -91,5 +93,6 @@ div {
     /* justify-self: start; */
     z-index: 1;
     align-self: start; 
+    justify-self: center;
 
 }
