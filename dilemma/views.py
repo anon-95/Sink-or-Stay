@@ -12,11 +12,11 @@ def index(request):
 def questions(request, pk):
 
     dict_of_options = {
-        1: ["Tax-collector attempting to collect taxes from everyone for 'boat maintenance'", "Scientist who is studying water samples instead of helping to row the boat.", "Tax-collector", "Scientist"],
-        2: ["Billionaire who purposefully sunk the ship to get rid of the tax-collecter, but is now offering you 1 million dollars allow him to stay on the ship.", "Pineapple-on-Pizza lover who only eats pineapple pizza and hates on all other pizzas.", "Billionaire", "Pineapple-on-Pizza-lover"],
-        3: ["Alien attempting to kidnap everyone.", "Epée fencer waiting for the 'right opportunity.", "Alien", "epee-fencer"],
-        4: ["Banana-duck thief that stole all the banana-ducks in the world.", "A selfish person who has fifteen sandwiches but refuses to share with everyone else.", "Banana-duck-thief", "Sandwich-hoarder"],
-        5: ["Someone on the boat who died from the fear of being tossed overboard. Though you tossed the corpse overboard, its ghost remain on the boat, haunting the rest of the people on board. Its spirit weighs down the boat with its heavy emotions.", "Seagull that keeps pecking everybody on board because it is offended by their horrendous fashion sense.", "Ghost", "Seagull"],
+        1: ["Tax-collector attempting to collect taxes from everyone for 'boat maintenance'", "Scientist who is studying water samples instead of helping to row the boat.", "tax-collector", "scientist"],
+        2: ["Billionaire who purposefully sunk the ship to get rid of the tax-collecter, but is now offering you 1 million dollars allow him to stay on the ship.", "Pineapple-on-Pizza lover who only eats pineapple pizza and hates on all other pizzas.", "billionaire", "pineapple-on-pizza-lover"],
+        3: ["Alien attempting to kidnap everyone.", "Epée fencer waiting for the 'right opportunity.", "alien", "epee-fencer"],
+        4: ["Banana-duck thief that stole all the banana-ducks in the world.", "A selfish person who has fifteen sandwiches but refuses to share with everyone else.", "banana-duck-thief", "sandwich-hoarder"],
+        5: ["Someone on the boat who died from the fear of being tossed overboard. Though you tossed the corpse overboard, its ghost remain on the boat, haunting the rest of the people on board. Its spirit weighs down the boat with its heavy emotions.", "Seagull that keeps pecking everybody on board because it is offended by their horrendous fashion sense.", "ghost", "seagull"],
     }
 
 
